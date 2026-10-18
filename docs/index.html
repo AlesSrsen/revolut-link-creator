@@ -4,14 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eeecea">
-  <meta name="description" content="Create a Revolut payment link with a prefilled amount, currency and message. Save presets and download QR codes, all in your browser.">
+  <meta name="description" content="Create Revolut payment links with a prefilled amount, currency and message. Copy your link, download a QR code and save reusable presets in your browser.">
+  <link rel="canonical" href="https://alessrsen.github.io/revolut-link-creator/">
+  <link rel="sitemap" type="application/xml" href="./sitemap.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Link for Revolut">
+  <meta property="og:url" content="https://alessrsen.github.io/revolut-link-creator/">
+  <meta property="og:title" content="Revolut Payment Link Generator – Amount, Currency &amp; QR">
+  <meta property="og:description" content="Create Revolut payment links with a prefilled amount, currency and message. Copy your link, download a QR code and save reusable presets in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Revolut Payment Link Generator – Amount, Currency &amp; QR">
+  <meta name="twitter:description" content="Create Revolut payment links with a prefilled amount, currency and message. Copy your link, download a QR code and save reusable presets in your browser.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' blob: data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <title>Payment link generator for Revolut</title>
+  <title>Revolut Payment Link Generator – Amount, Currency &amp; QR</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="preload" href="./fonts/albert-sans.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="./styles.css">
   <script type="module" src="./app.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://alessrsen.github.io/revolut-link-creator/#application",
+    "name": "Revolut payment link generator",
+    "url": "https://alessrsen.github.io/revolut-link-creator/",
+    "description": "A free, independent browser tool to create Revolut.me payment links with a prefilled amount, currency and message, download QR codes and save local presets.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern web browser.",
+    "isAccessibleForFree": true,
+    "inLanguage": "en",
+    "featureList": [
+      "Prefilled payment amount, currency and message",
+      "Copy and open Revolut.me payment links",
+      "Download SVG QR codes",
+      "Save named presets and restore the last form in browser storage"
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#payment-form">Skip to generator</a>
@@ -21,8 +52,8 @@
   </header>
   <main>
     <div class="intro">
-      <h1>Make a payment link</h1>
-      <p>Set the details once. Share a Revolut link with the amount, currency and message filled in.</p>
+      <h1>Revolut payment links</h1>
+      <p>Create a Revolut payment link with a prefilled amount, currency and message, then copy it or download its QR code.</p>
     </div>
     <noscript><p class="notice">Enable JavaScript to generate links locally. You can also visit <a href="https://revolut.me/">Revolut.me</a> directly.</p></noscript>
     <p id="storage-notice" class="notice" role="status" hidden></p>
@@ -88,10 +119,34 @@
         <p id="preset-status" class="status" role="status"></p>
       </section>
     </div>
+    <section id="help" class="help" aria-labelledby="help-heading">
+      <h2 id="help-heading">Payment link questions</h2>
+      <details open>
+        <summary>How do I create a Revolut payment link?</summary>
+        <p>Enter your Revtag, choose a currency and optionally add an amount and message. Copy the generated Revolut.me link or download its QR code. Open the link on Revolut to check the recipient and details before sharing.</p>
+      </details>
+      <details>
+        <summary>Where do I find my Revtag?</summary>
+        <p>Your Revtag is the username in your Revolut profile. Enter it with or without the @ sign. Revtags use 3–16 English letters or numbers, as described in <a href="https://help.revolut.com/en-CZ/help/profile-and-plan/profile-plan/profile-settings/how-do-i-update-my-revtag/" target="_blank" rel="noopener noreferrer">Revolut’s Revtag guidance</a>.</p>
+      </details>
+      <details>
+        <summary>Can I leave the payment amount blank?</summary>
+        <p>Yes. Leave the amount blank to let the payer choose it on Revolut. You can still select a currency and add a message. Supported currencies depend on the recipient’s account; check the details on Revolut before paying.</p>
+      </details>
+      <details>
+        <summary>Where are my payment details and presets stored?</summary>
+        <p>Link and QR generation happen in your browser. The last form and named presets stay in this browser’s local storage; use Clear saved data to remove them. The generated link and QR contain the details you enter. Opening a payment link sends those details to Revolut.</p>
+      </details>
+      <details>
+        <summary>Is this generator free and provided by Revolut?</summary>
+        <p>The generator is free to use and requires no sign-in. It is an independent project, not an official Revolut service. Creating a link does not move money. Payments happen on Revolut, where you should review the recipient, amount and currency.</p>
+      </details>
+      <p class="hint help-sources">Prefill format checked on <time datetime="2026-10-18">18 October 2026</time>. Revolut may change this behavior. Read <a href="https://help.revolut.com/en-IT/help/transfers/payment-links/revolut-me-link/" target="_blank" rel="noopener noreferrer">Revolut’s personal payment link help</a> and the project’s <a href="https://github.com/AlesSrsen/revolut-link-creator#link-format-and-limits" target="_blank" rel="noopener noreferrer">verification notes</a>.</p>
+    </section>
   </main>
   <footer class="site-footer">
     <div><p>Independent tool. Not affiliated with Revolut.</p><p class="hint">Inputs and presets stay in this browser. Shared links contain the details you enter.</p></div>
-    <button type="button" class="text-button" id="clear-data">Clear saved data</button>
+    <div class="footer-actions"><a href="./sitemap.xml">Sitemap</a><button type="button" class="text-button" id="clear-data">Clear saved data</button></div>
   </footer>
 </body>
 </html>

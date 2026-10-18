@@ -19,6 +19,20 @@ Local storage uses the key `revolut-link-creator.v1`. Data is device/browser-spe
 
 Open tabs keep their preset lists current, and clearing saved data also clears the form in other open tabs.
 
+## SEO
+
+The page targets “Revolut payment link generator” with a descriptive title, relevant H1/intro, canonical HTTPS URL, Open Graph/Twitter metadata, static usage questions, primary-source references and WebApplication JSON-LD. The JSON-LD describes the visible tool without invented reviews or affiliation. The help text is available in HTML without JavaScript, including answers inside native disclosure controls. The strict content security policy is retained.
+
+The sitemap is [sitemap.xml](https://alessrsen.github.io/revolut-link-creator/sitemap.xml). It includes only the canonical page, not duplicate `index.html` or query-string URLs. Update its `lastmod` only when the page changes meaningfully.
+
+Audit on 2026-10-18: the live site returned HTTP 200 over HTTPS without an indexing restriction in its HTTP headers or HTML. A rendered-browser audit checked for injected schema as well as static markup. The missing canonical, sitemap, social metadata and explanatory content were addressed. Existing strengths are static HTML, semantic form labels, a mobile layout, local assets and no third-party runtime requests.
+
+GitHub Pages hosts this project below `/revolut-link-creator/`. Crawlers read robots.txt at the host root (`https://alessrsen.github.io/robots.txt`), where the audit received HTTP 404. A 404 does not block crawling. Adding `docs/robots.txt` would publish an ineffective subdirectory robots file, so none is added. Host-wide crawler rules require a separate owner-site change and must account for other projects. See [Google’s robots.txt documentation](https://developers.google.com/search/docs/crawling-indexing/robots/intro).
+
+Next: verify the URL-prefix property `https://alessrsen.github.io/revolut-link-creator/` in Google Search Console, submit the sitemap and inspect the homepage URL. No Search Console account access or verification token was supplied, so submission, index coverage, field Core Web Vitals and search performance have not been checked. No ranking or AI-citation uplift is claimed. See [Google’s canonical guidance](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) and [AI search guidance](https://developers.google.com/search/docs/appearance/ai-features).
+
+Programmatic keyword pages and speculative AI discovery files are omitted: this is one working utility whose useful content is already directly readable. There is no invented traffic baseline, keyword-volume data or evidence of existing rankings.
+
 ## Link format and limits
 
 ```text

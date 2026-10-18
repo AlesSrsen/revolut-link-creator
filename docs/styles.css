@@ -103,6 +103,13 @@ label span { color: var(--muted); font-size: var(--small); font-weight: 400; mar
 .site-footer { margin-top: 64px; padding-block: 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .site-footer .hint { margin-top: 6px; max-width: 65ch; }
 .site-footer button { flex-shrink: 0; }
+.footer-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; }
+.help { margin-top: 64px; max-width: 60ch; }
+.help h2 { margin-bottom: 24px; }
+.help details { margin-top: 12px; padding: 16px 20px; background: var(--surface); }
+.help summary { cursor: pointer; font-weight: 500; }
+.help details p { margin-top: 14px; }
+.help-sources { margin-top: 24px; }
 .notice { padding: 16px 20px; background: var(--surface); margin-bottom: 24px; }
 .skip-link { position: fixed; top: 12px; left: 12px; z-index: 2; transform: translateY(-160%); padding: 12px 20px; background: var(--paper); }
 .skip-link:focus { transform: translateY(0); }
