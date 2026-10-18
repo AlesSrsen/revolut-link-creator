@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeecea">
+  <meta name="description" content="Create a Revolut payment link with a prefilled amount, currency and message. Save presets and download QR codes, all in your browser.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' blob: data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Payment link generator for Revolut</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="./fonts/albert-sans.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#payment-form">Skip to generator</a>
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="Link for Revolut home">Link for Revolut<span class="wordmark-mark" aria-hidden="true">↗</span></a>
+    <a href="https://github.com/AlesSrsen/revolut-link-creator" target="_blank" rel="noopener noreferrer">View source</a>
+  </header>
+  <main>
+    <div class="intro">
+      <h1>Make a payment link</h1>
+      <p>Set the details once. Share a Revolut link with the amount, currency and message filled in.</p>
+    </div>
+    <noscript><p class="notice">Enable JavaScript to generate links locally. You can also visit <a href="https://revolut.me/">Revolut.me</a> directly.</p></noscript>
+    <p id="storage-notice" class="notice" role="status" hidden></p>
+    <div class="workspace">
+        <form id="payment-form" novalidate>
+          <h2>Payment details</h2>
+          <div class="field">
+            <label for="revtag">Your Revtag <span>Required</span></label>
+            <input id="revtag" name="revtag" type="text" placeholder="@yourname" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="17" required aria-describedby="revtag-help revtag-error">
+            <p class="hint" id="revtag-help">Your Revolut username. Use 3–16 letters or numbers.</p>
+            <p class="error" id="revtag-error" hidden></p>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="amount">Amount <span>Optional</span></label>
+              <input id="amount" name="amount" type="text" inputmode="decimal" placeholder="Leave open" autocomplete="off" maxlength="20" aria-describedby="amount-help amount-error">
+              <p class="hint" id="amount-help">Leave blank for any amount.</p>
+              <p class="error" id="amount-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="currency">Currency</label>
+              <select id="currency" name="currency" aria-describedby="currency-error"><option value="EUR">EUR — Euro</option></select>
+              <p class="error" id="currency-error" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="note">Message <span>Optional</span></label>
+            <textarea id="note" name="note" rows="2" maxlength="64" placeholder="What’s the payment for?" aria-describedby="note-help note-error"></textarea>
+            <div class="message-help"><p class="hint" id="note-help">Shown with the payment.</p><span class="hint" id="note-count">0 / 64</span></div>
+            <p class="error" id="note-error" hidden></p>
+          </div>
+          <p class="hint currency-hint">Currency availability depends on the recipient’s Revolut account.</p>
+        </form>
+      <aside class="preview-stage" aria-labelledby="preview-heading">
+        <div class="preview-header"><h2 id="preview-heading">Payment preview</h2><span>Revolut.me</span></div>
+        <div class="receipt" data-ui>
+          <p class="preview-amount" id="preview-amount">Any amount</p>
+          <p class="preview-recipient" id="preview-recipient">To your Revtag</p>
+          <p class="preview-note" id="preview-note">Your message will appear here.</p>
+          <div class="qr-row" id="qr-row" hidden>
+            <div id="qr-code" class="qr-code"></div>
+            <div><h3>Scan to pay</h3><p class="hint">Opens this payment link.</p><button type="button" id="download-qr" class="text-button">Download QR</button></div>
+          </div>
+          <p class="qr-empty" id="qr-empty">Your QR code will appear here when the link is ready.</p>
+        </div>
+        <div class="link-output">
+          <label for="payment-link">Your payment link</label>
+          <textarea id="payment-link" rows="3" readonly placeholder="Enter your Revtag to create a link." aria-describedby="link-status"></textarea>
+          <div class="link-actions"><button type="button" class="primary" id="copy-link" disabled>Copy link <span aria-hidden="true">↗</span></button><a id="open-link" target="_blank" rel="noopener noreferrer" hidden>Open in Revolut</a></div>
+          <p class="status" id="link-status" role="status">Add your Revtag to get started.</p>
+        </div>
+        <p class="preview-caption">Preview only. Check the recipient and details on Revolut before paying.</p>
+      </aside>
+      <section class="presets" aria-labelledby="presets-heading">
+        <h2 id="presets-heading">Saved presets</h2>
+        <p class="hint" id="presets-empty">Keep the details you use again. Saved only in this browser.</p>
+        <ul id="preset-list" class="preset-list"></ul>
+        <form id="preset-form" class="preset-form">
+          <label for="preset-name">Preset name</label>
+          <div class="preset-save"><input id="preset-name" type="text" placeholder="e.g. Friday lunch" maxlength="40" required><button type="submit" class="secondary" id="save-preset" disabled>Save preset</button></div>
+          <p class="hint">Saving an existing name replaces that preset.</p>
+        </form>
+        <p id="preset-status" class="status" role="status"></p>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div><p>Independent tool. Not affiliated with Revolut.</p><p class="hint">Inputs and presets stay in this browser. Shared links contain the details you enter.</p></div>
+    <button type="button" class="text-button" id="clear-data">Clear saved data</button>
+  </footer>
+</body>
+</html>
